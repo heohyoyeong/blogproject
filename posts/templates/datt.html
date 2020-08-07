@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %} <
+{% block container %}
+<script src="/static/js/postdatt.js"></script> <!-- java스크립트 소환!-->
+<div class="container">
+    <h1>기존의 글</h1>
+    <form method="post">
+       {% csrf_token %}
+        {% bootstrap_form post_form %}
+        <a href="/posts/list/" class="btn btn-lg btn-primary">돌아가기</a>
+    </form>
+</div>
+<br>
+<div class="container">
+<h1>댓글</h1>
+    <a href="{% url 'posts:createdatt' post.id %}" class="btn btn-primary">새글작성</a>
+    <div class="m-1"></div>
+    <table class="table table-hover">
+
+        <thead class="thead-dark"> <!-- 제목 -->
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">작성자</th>
+                <th scope="col">내용</th>
+                <th scope="col">수정</th>
+                <th scope="col">삭제</th>
+            </tr>
+        </thead>
+        <form method="post">
+        <tbody> <!-- 내용 -->
+        {% for datts in datt %}
+            <tr>
+                <th scope="row">{{ datts.id }}</th>
+                <td>{{ datts.author }}</td>
+                <td>{{ datts.contents }}</td>
+                <td>
+                    <a href="{% url 'posts:updatedatt' post.id datts.id %}" class="btn btn-warning">수정</a>
+                </td>
+                <td>
+                    <a href="{% url 'posts:deletedatt' post.id datts.id %}" class="btn btn-danger">삭제</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock %}

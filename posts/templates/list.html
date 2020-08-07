@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+{% block container %}
+
+<script src="/static/js/post.js"></script> <!-- java스크립트 소환!-->
+<div class="container">
+<h1>Bulletin Board System(BBS)</h1>
+    <td>
+       <a href="{% url 'posts:create' %}" class="btn btn-primary">새글작성</a>
+    </td>
+    <div class="m-1"></div>
+    <table class="table table-hover">
+
+        <thead class="thead-dark"> <!-- 제목 -->
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">작성자</th>
+                <th scope="col">내용</th>
+                <th scope="col">댓글작성</th>
+                <th scope="col">수정</th>
+                <th scope="col">삭제</th>
+            </tr>
+        </thead>
+
+        <tbody> <!-- 내용 -->
+        {% for post in posts %}
+            <tr>
+                <th scope="row">{{ post.id }}</th>
+                <td>{{ post.author }}</td>
+                <td>{{ post.contents }}</td>
+                <td>
+                    <a href="{% url 'posts:datt' post.id %}" class="btn btn-success">댓글작성</a>
+                </td>
+                <td>
+                    <a href="{% url 'posts:update' post.id %}" class="btn btn-warning">수정</a>
+                </td>
+                <td>
+                    <a href="{% url 'posts:delete' post.id %}" class="btn btn-danger">삭제</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock %}

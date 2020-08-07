@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %} <!-- bootstrap을 추가해야한다. -->
+{% block container %}
+<div class="container">
+    <h1>새글작성</h1>
+    <form method="post">
+       {% csrf_token %}
+        <!-- {{ post_form }} 이렇게쓰면 불러오기는 하지만 안이쁘다 -->
+        {% bootstrap_form datt_form %} <!-- bootstrap을 적용하기 위하여 이렇게 써야한다. -->
+
+        <button type="submit" class="btn btn-primary">등록</button>
+    </form>
+</div>
+{% endblock %}
