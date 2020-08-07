@@ -13,5 +13,7 @@ urlpatterns = [
     path('<int:post_id>/createdatt/', views.p_createdatt, name="createdatt"),
     path('<int:post_id>/datt/<int:datts_id>/deletedatt/', views.p_deletedatt, name="deletedatt"),
     path('<int:post_id>/datt/<int:datts_id>/updatedatt/', views.p_updatedatt, name="updatedatt"),
+    path('register/',views.register, name='register'),
+    path('login/',views.login,name="login"),
 
 ]
